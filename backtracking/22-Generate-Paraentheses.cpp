@@ -24,4 +24,43 @@ public:
             }
         
          }
-};
+}
+
+/*****BFS*****/
+
+public:
+    struct Node{
+        string str;
+        int open;
+        int closed;
+
+        Node(string s, int o, int c){
+            str =s;
+            open =o;
+            closed =c;
+        }
+    };
+
+    vector<string> generateParenthesis(int n) {
+      vector<string> res;
+      queue<Node> q;
+        q.push(Node("",0,0));
+
+        while(!q.empty()){
+            auto curr = q.front(); q.pop();
+            if(curr.open == n && curr.closed ==n){
+                res.push_back(curr.str);
+            }else{
+                if(curr.open < n){
+                    q.push(Node(curr.str+"(", curr.open+1, curr.closed));
+                }
+                if(curr.open > curr.closed){
+                    q.push(Node(curr.str+")", curr.open, curr.closed+1));
+                }
+
+            }
+        }
+
+        return res;
+    }
+};;
