@@ -4,13 +4,16 @@ using namespace std;
 vector<vector<int>> res;
 
 void subset(vector<int> nums, vector<int> &v, int pos){
-	if(pos > nums.size()) return;
+	
+   cout<<pos<<endl;
 	res.push_back(v);
-
+if(pos == nums.size()) return;
 	for(int i=pos; i<nums.size(); i++){
 		v.push_back(nums[i]);
 		subset(nums, v, i+1);
-		v.pop_back();
+      //cout<<"popped"<<v[v.size()-1]<<endl;
+		
+      v.pop_back();
 	}
 
 }
